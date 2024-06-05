@@ -1,0 +1,16 @@
+services:
+  app:
+    container_name: node_liff
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    tty: true
+    # 下記はdocker composeのver3.2以降で使える新しい記法
+    volumes:
+      - type: bind
+        source: ./line-liff-v2-starter/src/vanilla
+        target: /app
+    ports:
+      - "3000:3000"
+    command: yarn dev
